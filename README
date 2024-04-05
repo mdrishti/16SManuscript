@@ -1,1 +1,9 @@
-This is a repository in making for the 16S Manuscript.
+This is a repository for the 16S Manuscript.
+
+All scripts are in the main folder. All csv files with the statistics are in the 'csv_files' folder and figures are in the 'Figures'. All initial data (emu abundance files as well as RDP abundance files) used for the data anlaysis are in the 'data' folder. To reproduce the data, install the following R-packages.
+
+`install.packages(c("reshape2", "ggplot2", "plyr", "dplyr", "Polychrome"))`
+
+Kindly cite the following paper, if you use the R-scripts in this repository:
+
+Disha Tandon, Yuan Dong, Siegfried Hapfelmeier. Pipeline for species-resolved full-length 16S rRNA amplicon nanopore sequencing analysis of low-complexity bacterial microbiota. https://doi.org/10.1101/2023.12.05.570138
