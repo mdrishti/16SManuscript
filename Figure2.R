@@ -13,15 +13,8 @@ source("suppFunctions.R")
 
 #####################################################################--------FIGURE-2 RIGHT PANEL (APPROACH-2)-----------##############################################################
 #load the OTU table and the count table:
-otu_fn <- "data/Figure2/Approach2_Table_all"
+otu_fn <- "data/Figure2/Fig2_approach2_RP_table.txt"
 otu_t<-read.table(otu_fn, sep="\t", header=TRUE, row.names = 1)
-#for(i in 1:ncol(otu_t)){print(sum(otu_t[1:(nrow(otu_t)),i]))} #check
-#length(which(rowSums(otu_t) != 0)) #check
-
-
-#for barcode fitering----remove after extracting table
-bc <- c("barcode01","barcode02","barcode03","barcode04","barcode05","barcode06","barcode07","barcode09","barcode10","barcode11","barcode12","barcode13")
-otu_t <- otu_t[,colnames(otu_t) %in% bc]
 
 
 #copy number normalization
@@ -48,7 +41,7 @@ stats1 <- preRec(expecT1, otu_t2[which(rownames(otu_t2) != "unclassified"),c("ba
 stats2 <- preRec(expecT2, otu_t2[which(rownames(otu_t2) != "unclassified"),c("barcode06","barcode07","barcode09","barcode10")]) 
 stats1
 stats2
-write.csv(rbind(stats1,stats2), "NBD_Samples_stats_X.csv")
+write.csv(rbind(stats1,stats2), "csv_files/Fig2_NBD_RP_sampleStats.csv")
 
 
 #calculate L1-norm, L2-norm, precision and recall for mock
@@ -64,26 +57,19 @@ m <- data.frame(m1=m1,m2=m2,m3=m3)
 m
 mock <- c("Bacteroides caecimuris","Bifidobacterium animalis","Blautia sp. YL58","Turicimonas muris","Enterococcus faecalis","Clostridium innocuum","Flavonifractor plautii","Enterocloster","Lactobacillus reuteri", "L1-norm", "L2-norm", "True positives", "precision", "recall")
 rownames(m) <- mock
-write.csv(m,"NBD_mock_stats.csv")
+write.csv(m,"csv_files/Fig2_NBD_RP_mockStats.csv")
 
 
 #Plot barplots
-meltAndPlot(otu_t2, "NBD_Fig2")
+meltAndPlot(otu_t2, "Figures/Fig2_NBD_RP")
 ########################################################################################------------END-------############################################################################################
 
 
 
 #####################################################################--------FIGURE-2 LEFT PANEL (APPROACH-1)-----------##############################################################
 #load the OTU table and the count table:
-otu_fn <- "data/Figure2/Approach1_Table_all"
+otu_fn <- "data/Figure2/Fig2_approach1_LP_table.txt"
 otu_t<-read.table(otu_fn, sep="\t", header=TRUE, row.names = 1)
-#for(i in 1:ncol(otu_t)){print(sum(otu_t[1:(nrow(otu_t)),i]))} #check
-#length(which(rowSums(otu_t) != 0)) #check
-
-
-#for barcodes----
-bc <- c("barcode01","barcode02","barcode04","barcode05","barcode06","barcode12","barcode13","barcode15","barcode16","barcode21","barcode22","barcode23")
-otu_t <- otu_t[,colnames(otu_t) %in% bc]
 otu_Bif <- otu_t["Bifidobacterium animalis",] #for later, the relative abundance is zero and thus gets filtered in the next steps
 
 
@@ -113,7 +99,7 @@ stats1 <- preRec(expecT1, otu_t2[which(rownames(otu_t2) != "unclassified"),c("ba
 stats2 <- preRec(expecT2, otu_t2[which(rownames(otu_t2) != "unclassified"),c("barcode12","barcode13","barcode15","barcode16")]) 
 stats1
 stats2
-write.csv(rbind(stats1,stats2), "16SSQK024_samples_stats_X.csv")
+write.csv(rbind(stats1,stats2), "csv_files/Fig2_16SSQK024_LP_sampleStats.csv")
 
 
 mock <- c("Bacteroides caecimuris","Bifidobacterium animalis","Blautia sp. YL58","Turicimonas muris","Enterococcus faecalis","Clostridium innocuum","Flavonifractor plautii","Enterocloster","Lactobacillus reuteri")
@@ -127,8 +113,9 @@ m <- data.frame(m1=m1,m2=m2,m3=m3)
 m
 mock <- c("Bacteroides caecimuris","Bifidobacterium animalis","Blautia sp. YL58","Turicimonas muris","Enterococcus faecalis","Clostridium innocuum","Flavonifractor plautii","Enterocloster","Lactobacillus reuteri", "L1-norm", "L2-norm", "True positives", "precision", "recall")
 rownames(m) <- mock
-write.csv(m,"16SSQK024_mock_stats.csv")
+write.csv(m,"csv_files/Fig2_16SSQK024_LP_mockStats.csv")
 
 
 #Plot barplots
-meltAndPlot(otu_t2, "16SSQK024_Fig2")
+meltAndPlot(otu_t2, "Figures/Fig2_16SSQK024_LP")
+########################################################################################------------END-------############################################################################################
